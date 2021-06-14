@@ -1,5 +1,17 @@
 const mix = require('laravel-mix');
+// const BrowserSyncPluginb = require('browser-sync-webpack-plugin');
+// const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
+require('dotenv').config();
+// mix.webpackConfig({
+//     plugins: [
+//         new BrowserSyncPlugin({
+//             files: [
+//                 '**/*.css'
+//             ]
+//         }, {reload:false}),
+//     ]
+// })
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
