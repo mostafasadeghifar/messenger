@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 <chat-room-selection
                     v-if="currentRoom.id"
-                    :rooms = "chatRooms"
+                    :rooms="chatRooms"
                     :currentRoom="currentRoom"
                     v-on:roomchanged="setRoom($event)"
                 />
@@ -14,9 +14,9 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <message-container :messages="messages" />
+                    <message-container :messages="messages"/>
                     <input-message :room="currentRoom"
-                    v-on:messagesent="getMessages()"
+                                   v-on:messagesent="getMessages()"
                     />
                 </div>
             </div>
@@ -35,7 +35,7 @@
             AppLayout,
             MessageContainer,
             InputMessage,
-                ChatRoomSelection,
+            ChatRoomSelection,
         },
         data: function () {
             return {
@@ -45,8 +45,8 @@
             }
         },
         watch: {
-            currentRoom( val, oldVal ) {
-                if( oldVal.id ) {
+            currentRoom(val, oldVal) {
+                if (oldVal.id) {
                     this.disconnect(oldVal);
                 }
                 this.connect();
@@ -54,16 +54,16 @@
         },
         methods: {
             connect() {
-                if(this.currentRoom.id) {
+                if (this.currentRoom.id) {
                     let vm = this;
                     this.getMessages();
-                    window.Echo.private("chat."+this.currentRoom.id)
-                    .listen('.message.new', e=>{
-                        vm.getMessages();
-                    });
+                    window.Echo.private("chat." + this.currentRoom.id)
+                        .listen('.message.new', e => {
+                            vm.getMessages();
+                        });
                 }
             },
-            disconnect( room ) {
+            disconnect(room) {
                 window.Echo.leave("chat." + room.id);
             },
             getRooms() {
@@ -90,8 +90,13 @@
                     })
             },
         },
-       created() {
-                this.getRooms();
-            }
+        created() {
+            this.getRooms();
+        }
     }
 </script>
+
+
+
+
+
